@@ -1,0 +1,48 @@
+﻿<Window
+    x:Class="MVVM_With_XML.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MVVM_With_XML.ViewModel"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="600"
+    Height="350"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <local:MainwindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ListView
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="3"
+            Margin="20"
+            ItemsSource="{Binding Path=Students}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="Id" />
+                    <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Header="First Name" />
+                    <GridViewColumn DisplayMemberBinding="{Binding LastName}" Header="Last Name" />
+                    <GridViewColumn
+                        Width="50"
+                        DisplayMemberBinding="{Binding Age}"
+                        Header="Age" />
+                    <GridViewColumn
+                        Width="50"
+                        DisplayMemberBinding="{Binding Gender}"
+                        Header="Gender" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
