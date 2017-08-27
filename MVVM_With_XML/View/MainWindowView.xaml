@@ -9,8 +9,13 @@
     Width="600"
     Height="350"
     mc:Ignorable="d">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="20" />
+        </Style>
+    </Window.Resources>
     <Window.DataContext>
-        <local:MainwindowViewModel />
+        <local:MainWindowViewModel />
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -27,12 +32,22 @@
             Grid.RowSpan="2"
             Grid.ColumnSpan="3"
             Margin="20"
-            ItemsSource="{Binding Path=Students}">
+            ItemsSource="{Binding Path=Students}"
+            SelectedIndex="{Binding CurrentSelectId}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="Id" />
-                    <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Header="First Name" />
-                    <GridViewColumn DisplayMemberBinding="{Binding LastName}" Header="Last Name" />
+                    <GridViewColumn
+                        Width="30"
+                        DisplayMemberBinding="{Binding Id}"
+                        Header="Id" />
+                    <GridViewColumn
+                        Width="100"
+                        DisplayMemberBinding="{Binding FirstName}"
+                        Header="First Name" />
+                    <GridViewColumn
+                        Width="100"
+                        DisplayMemberBinding="{Binding LastName}"
+                        Header="Last Name" />
                     <GridViewColumn
                         Width="50"
                         DisplayMemberBinding="{Binding Age}"
@@ -44,5 +59,19 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button
+            Grid.Row="2"
+            Grid.Column="0"
+            Command="{Binding Add}"
+            Content="Add" />
+        <Button
+            Grid.Row="2"
+            Grid.Column="1"
+            Content="Edit" />
+        <Button
+            Grid.Row="2"
+            Grid.Column="2"
+            Command="{Binding Remove}"
+            Content="Remove" />
     </Grid>
 </Window>
