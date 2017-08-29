@@ -12,7 +12,7 @@ using MVVM_With_XML.View;
 
 namespace MVVM_With_XML.ViewModel
 {
-    public class MainWindowViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         private StudentRepository _studentRepository = new StudentRepository();
 
@@ -33,6 +33,7 @@ namespace MVVM_With_XML.ViewModel
                 RaisePropertyChanged("Students");
             }
         }
+      
 
         public int CurrentSelectId { get; set; }
 
@@ -53,8 +54,24 @@ namespace MVVM_With_XML.ViewModel
             }
         }
 
-        private ICommand _remove;
+        private ICommand _edit;
+        public ICommand Edit
+        {
+            get
+            {
+                if (_edit == null)
+                {
+                   _edit = new RelayCommand(() =>
+                   {
+                       EditWindowView editWindowView = new EditWindowView();
+                       editWindowView.Show();
+                   });
+                }
+                return _edit;
+            }
+        }
 
+        private ICommand _remove;
         public ICommand Remove
         {
             get
@@ -69,6 +86,7 @@ namespace MVVM_With_XML.ViewModel
                 return _remove;
             }
         }
+        
       
     }
 }

@@ -10,16 +10,26 @@ using MVVM_With_XML.Model;
 
 namespace MVVM_With_XML.ViewModel
 {
-    public class AddWindowViewModel
+    public class AddViewModel
     {
         private StudentRepository _studentRepository = new StudentRepository();
 
-        public int Id{ get; set; }
-        public string FirstName{ get; set; }
-        public string LastName{ get; set; }
-        public int Age{ get; set; }
-        public int Gender{ get; set; }
-
+        private Student _student;
+        public Student Student
+        {
+            get
+            {
+                if (_student == null)
+                {
+                    _student = new Student();
+                }
+                return _student;
+            }
+            set
+            {
+                _student = value;
+            }
+        }
 
         private ICommand _add;
         public ICommand Add
@@ -30,14 +40,7 @@ namespace MVVM_With_XML.ViewModel
                 {
                     _add = new RelayCommand(() =>
                     {
-                        _studentRepository.AddToCollection(new Student()
-                        {
-                            Id = this.Id,
-                            FirstName = this.FirstName,
-                            LastName = this.LastName,
-                            Age = this.Age,
-                            Gender = this.Gender
-                        });
+                        _studentRepository.AddToCollection(_student);
                     });
                 }
                 return _add;

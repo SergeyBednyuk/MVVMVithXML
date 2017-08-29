@@ -15,7 +15,7 @@
         </Style>
     </Window.Resources>
     <Window.DataContext>
-        <local:MainWindowViewModel />
+        <local:MainViewModel />
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -29,6 +29,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <ListView
+            x:Name="LstView"
             Grid.RowSpan="2"
             Grid.ColumnSpan="3"
             Margin="20"
@@ -67,6 +68,8 @@
         <Button
             Grid.Row="2"
             Grid.Column="1"
+            Command="{Binding Edit}"
+            CommandParameter="{Binding ElementName=LstView, Path=SelectedIndex}"
             Content="Edit" />
         <Button
             Grid.Row="2"
